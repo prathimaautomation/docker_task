@@ -32,3 +32,40 @@
 * Microservice architecture also brings with it significant overhead in terms of design, interoperability of services, management, and use of system resources. It has a price, and for applications which cannot make sufficient use of its advantages, the price may be too high.
 * If complexity isn't your problem, microservices aren't the solution.
 * Not all applications are large enough to break down into microservices.
+
+## Docker Commands
+* Docker images: Will present the images available
+* Docker ps: To check the containers running
+* Docker ps -a: To check every container running including hidden files
+* Docker pull: to pull the image from docker hub
+* Docker run : to run the image live directly from dockerhub
+* docker exec -it [container id] bash: to access the running container
+* docker stop: stops a running container
+* docker kill: kills container by stopping execution. stop gives time to shut down gracefully
+* docker commit [container id][username/imagename]: creates new image of an edited container on local system
+* docker rm [container id]:removes container
+* docker history [image name]: to view history
+* docker image rm [image name]: deletes image
+
+### Making docker docs available on our localhost
+* docker run -d -p 4000:4000 docs/docker.github.io 
+
+### Logging into a running container
+* docker exec -it <container-id/name> sh
+
+### Port mapping in our containers with localhost
+* docker run -d -p localhost-port:container-port
+
+### Copying files to container
+* docker cp <file to copy> <container_id>:path/to/file
+
+### Running a container with ghost
+* docker run -d -p 2368:2368 ghost 
+
+### Running nginx on port 80
+* docker run -d -p 80:80 nginx 
+
+### Replacing nginx default page
+* docker cp index.html ae515fa11154:/usr/share/nginx/html
+
+![](prathimaprofile.mp4)
