@@ -68,4 +68,4 @@
 ### Replacing nginx default page
 * docker cp index.html ae515fa11154:/usr/share/nginx/html
 
-![](prathimaprofile.mp4)
+![](localhost.png)
