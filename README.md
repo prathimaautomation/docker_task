@@ -65,7 +65,24 @@
 ### Running nginx on port 80
 * docker run -d -p 80:80 nginx 
 
+* /usr/share/nginx/html has nginx web files
+
+* can replace index.html to alter website appearance
+
 ### Replacing nginx default page
 * docker cp index.html ae515fa11154:/usr/share/nginx/html
 
+### Setup own nginx
+* docker run -d -p 80:80 nginx
+* Create your index.html on host
+* cd to the file
+* docker cp index.html <container-id>:/usr/share/nginx/html
+* finished.
 ![](localhost.png)
+
+### push to docker
+* docker build -t pjoginipelly/my-page:prathima
+* docker tag nginx pjoginipelly/my-page:prathima
+* docker commit ae515fa11154 pjoginipelly/my-page:prathima
+* docker push pjoginipelly/my-page:prathima
+![](myfirstdockerimage.png)
