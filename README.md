@@ -139,3 +139,52 @@ CMD ["nginx", "-g", "daemon off;"]
 *  docker run -d -p 99:80 pjoginipelly/automatednginx
 
 ## Docker Volume
+-creating a volume (but has not connection with the container)
+docker volume create --name sparta-vol1
+ or 
+ docker volume create sparta-vol1
+ # to check the volume
+* docker volume inspect sparta-vol1
+
+*  docker run -d -v /c/Users/Medha/docker/docker_task/app:/usr/share/nginx/html -p 91:80 nginx
+0142bb287529a0f4407a844c357a3f346ece46c67f4889edb7bba7e7d760495d
+
+## Questions to be asked to the developer before deploying an application
+* Depencencies depending
+* Which port listening
+* Which box/OS used to build
+* Has the app been tested on Windows, Ubuntu etc.
+* Is it using database? Which one? Port (here for our example, Mongodb on port 27017)
+
+## To deploy our app 
+* copy the app inside the folder in the local machine
+* go inside the app folder
+* Create a Dockerfile to copy the app from local to container and install the dependencies and run the app
+```
+#Dockerfile
+
+# in real time project, there will be ENV node_env=dev or prod
+
+COPY ["package.json", "package-lock.json*", "./"]
+
+COPY . .
+
+# RUN is the keyword to run all the commands
+RUN npm install -g npm@7.20.6
+
+RUN node seeds/seed.js
+
+# to launch the app
+
+EXPOSE 3000
+
+CMD ["node", "app.js"]
+# it is like node app.js or npm start
+
+```
+* build the image
+`docker build -t pjoginipelly/nodeapp .`
+* run the image
+`docker run -d -p 3000:3000 pjoginipelly/nodeapp`
+* or we can port forward to 80 localhost
+`docker run -d -p 80:3000 pjoginipelly/nodeapp`

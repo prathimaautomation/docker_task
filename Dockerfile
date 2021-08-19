@@ -22,7 +22,7 @@ FROM nginx
 LABEL MAINTAINER=pjoginipelly@spartaglobal.com
 
 # copy the data as our index.html/app1
-COPY index.html /usr/share/nginx/html
+COPY /app /usr/share/nginx/html
 
 # copy app1 to the nginx default index.html
 
