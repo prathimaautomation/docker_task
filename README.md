@@ -80,9 +80,62 @@
 * finished.
 ![](localhost.png)
 
-### push to docker
+### push to docker manually
 * docker build -t pjoginipelly/my-page:prathima
 * docker tag nginx pjoginipelly/my-page:prathima
 * docker commit ae515fa11154 pjoginipelly/my-page:prathima
 * docker push pjoginipelly/my-page:prathima
 ![](myfirstdockerimage.png)
+
+### Automating the process of building an image and pushing to the DockerHub
+
+* nano Dockerfile
+```
+# build an image to automate the tasks to launch static website page using nginx webserver with Docker
+# using nginx webserver with Docker
+
+# user the official image nginx
+
+# label it with your name or email
+
+
+# copy the folder/file from localhost to the container
+
+# declare to use default port 80 for nginx
+
+# CMD with the final command - as an example npm start
+
+# building customised docker images
+
+# FROM is the keyword to use the image
+
+FROM nginx
+
+# label it with your email or name - this is optional
+LABEL MAINTAINER=pjoginipelly@spartaglobal.com
+
+# copy the data as our index.html/app1
+COPY index.html /usr/share/nginx/html
+
+# copy app1 to the nginx default index.html
+
+# Now let's add the port
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
+# we get this from the official image of nginx
+
+```
+*  docker build -t pjoginipelly/automatednginx .
+- '.'' indicates Dockerfile
+* docker push pjoginipelly/automatednginx
+
+## We can run any docker image on the repository on our machine regardless of OS
+- Let's delete the images/container locally on our pc by stopping the container and deleting using the below command
+* docker stop 4bd14abf3232
+* docker rm 4bd14abf3232
+- Let's run the image from the dockerhub on our PC
+*  docker run -d -p 99:80 pjoginipelly/automatednginx
+
+## Docker Volume
