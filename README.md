@@ -188,3 +188,5 @@ CMD ["node", "app.js"]
 `docker run -d -p 3000:3000 pjoginipelly/nodeapp`
 * or we can port forward to 80 localhost
 `docker run -d -p 80:3000 pjoginipelly/nodeapp`
+* push the docker image to DockerHub
+`docker push pjoginipelly/nodeapp`
